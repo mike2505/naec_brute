@@ -1,3 +1,2 @@
 # naec_brute
-:D
-need to fix
+Working brute for online.naec.ge
